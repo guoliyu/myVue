@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-test</title>
+    <script src="./js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <div id="itany">
+        {{ms}}
+        <br> {{msg}}
+        <h5>{{msg.split(' ').reverse().join(' ')}}</h5>
+        <h4>{{reverseMsg}}</h4>
+        <button @click="changeMsg">更改</button>
+        <hr>
+        <p>{{num2}}</p>
+        <button @click="change1">更改数值</button>
+    </div>
+    <button onclick="fn()">更改至</button>
+    <script>
+        var vm = new Vue({
+            el: '#itany',
+            data: { //普通属性
+                ms: '我 是 谁',
+                num1: 12
+            }, //存储数据
+            methods: {
+                changeMsg() {
+                    this.ms = 'I love you'
+                },
+                change1() {
+                    // console.log('改变数值');
+                    this.num2 = 111
+                }
+            }, //存储方法
+            computed: { //计算属性，通过函数的方式返回,必须有返回值，get函数
+                msg: function () {
+                    return 'hello world'
+                },
+                reverseMsg: function () {
+                    return this.ms.split(' ').reverse().join(' ')
+                },
+                num2: {
+                    get: function () {
+                        return this.num1 - 1;
+                        console.log(new Date())
+                    },
+                    set: function (val) {
+                        console.log('修改值');
+                        this.num2 = val
+                    }
+                }
+            },
+        });
+
+        function fn() {
+            setInterval(function () {
+                console.log(vm.num2)
+            }, 1000);
+        }
+    </script>
+</body>
+
+</html>

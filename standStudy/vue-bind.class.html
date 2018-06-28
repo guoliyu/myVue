@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-test</title>
+    <script src="./js/vue.js"></script>
+    <script>
+        window.onload = function () {
+            var vm = new Vue({
+                el: '#itany',
+                data: {
+                    classB: 'bb',
+                    classA: 'a'
+                }, //存储数据
+                methods: {
+
+                } //存储方法
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <style>
+        .classA {
+            color: #ff4200;
+            width: 100px;
+            height: 50px;
+            background: #000
+        }
+
+        .classB {
+            font-size: 50px
+        }
+    </style>
+    <div id="itany">
+        <!-- <p class="a">学习学习</p> -->
+        <!-- <p :class="{classA,classB}">出师表</p> -->
+    </div>
+
+</body>
+
+</html>

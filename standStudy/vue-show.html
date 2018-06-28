@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-test</title>
+    <script src="./js/vue.js"></script>
+    <script>
+        window.onload = function () {
+            var vm = new Vue({
+                el: '#itany',
+                data: {
+                    flag: true
+                }, //存储数据
+                methods: {
+                    change() {
+                        this.flag = !this.flag
+                    }
+                } //存储方法
+            });
+        }
+    </script>
+</head>
+
+<body>
+    <div id="itany">
+        <button v-on:click="change()">隐藏/显示</button>
+        <button v-on:click="flag=!flag">隐藏/显示</button>
+        <hr>
+        <div v-show="flag" style="width: 100px;height: 100px;background: #000;color: #fff">
+            点击按钮显示隐藏
+        </div>
+        <div v-if="flag" style="width: 100px;height: 100px;background: #000;color: #fff">
+            点击按钮显示隐藏
+        </div>
+    </div>
+
+</body>
+
+</html>

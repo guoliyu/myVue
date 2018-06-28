@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-test</title>
+    <script src="./js/vue.js"></script>
+    <script>
+        window.onload = function () {
+            var vm = new Vue({
+                el: '#itany',
+                data: {
+                    age: 23,
+                    user: {
+                        name: 'guoliyu',
+                        age: 26
+                    }
+                }, //存储数据
+                methods: {
+
+                }, //存储方法
+                watch: {
+                    user: {
+                        handler: function (nval, oval) {
+                            console.log('name的值改变了：' + '' + '原值:' + nval.age + '新值:' + oval.age)
+                        },
+                        deep: true
+                    }
+                }
+            });
+            vm.$watch('user.name', function (nval, oval) {
+                console.log('name的值改变了：' + '' + '原值:' + nval + '新值:' + oval)
+            })
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="itany">
+        <input type="text" v-model="user.name">
+        <p>{{user.name}}</p>
+        <input type="text" v-model="user.age">
+        <p>{{user.age}}</p>
+    </div>
+
+</body>
+
+</html>

@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-test</title>
+    <script src="./js/vue.js"></script>
+    <script>
+        window.onload = function () {
+            var vm = new Vue({
+                el: '#itany',
+                data: {
+                    arr: [12, 20, 30, 56, 48, 56]
+                }, //存储数据
+                methods: {
+                    show: function () {
+                        console.log('我被点击了')
+                    },
+                    add() {
+                        // console.log(this === vm);
+                        //this===vm===vue的对象实例
+                        vm.arr.push(666)
+                    }
+                } //存储方法
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="itany">
+        <button type="button" v-on:click="show()">点我</button>
+        <button type="button" v-on:click="add()">插入元素</button>
+        {{arr}}
+        <hr>
+        <button type="button" v-on:mouseover="show()">鼠标经过</button>
+    </div>
+
+</body>
+
+</html>

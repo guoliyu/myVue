@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-test</title>
+    <script src="./js/vue.js"></script>
+    <script src="./js/axios.min.js"></script>
+    <script>
+        window.onload = function () {
+            var vm = new Vue({
+                el: '#itany',
+                data: {
+
+                }, //存储数据
+                methods: {
+                    send() {
+                        axios({
+                            method: 'get',
+                            url: 'user.json',
+                        }).then((result) => {
+                            console.log(result.data)
+                        }).catch((err) => {
+                            console.log('请求失败' + err)
+                        });
+                    },
+                    sendAjax: function () {
+                        axios.get('server.php?name=1&age=25').then((result) => {
+                            console.log(result)
+                        })
+                    }
+                } //存储方法
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="itany">
+        <button @click="send">发送AJAx请求</button>
+
+        <button @click="sendAjax">发送AJAx请求</button>
+    </div>
+
+</body>
+
+</html>

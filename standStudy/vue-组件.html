@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-test</title>
+    <script src="./js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <div id="itany">
+        <my-hello></my-hello>
+        <my-world></my-world>
+    </div>
+    <script>
+        //定义全局组件
+        Vue.component('my-hello', {
+            template: ' <h3> {{name}} </h3>',
+            data: function () {
+                return {
+                    name: '我们不一样'
+                }
+            }
+        })
+        var vm = new Vue({
+            el: '#itany',
+            data: {
+
+            }, //存储数据
+            methods: {
+
+            }, //存储方法
+            components: { //定义局部组件
+                'my-world': {
+                    template: '<h3>{{name}} </h3>',
+                    data: function () {
+                        return {
+                            name: '哈哈哈'
+                        }
+                    }
+                },
+
+            }
+        });
+    </script>
+</body>
+
+</html>

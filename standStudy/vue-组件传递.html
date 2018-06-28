@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-test</title>
+    <script src="./js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <div id="itany">
+        <my-hello></my-hello>
+
+    </div>
+    <template id="gly01">
+        <div>
+            <h3>我是父级模板</h3>
+            <p>我是父级组件中的数据：{{name}},{{age}},{{user.name}}</p>
+            <p>我是接受子组件中的数据：{{money}},{{height}}</p>
+            <hr>
+            <my-world :name="name" :age="age" :username="user" @send-data="getData"></my-world>
+        </div>
+    </template>
+    <template id="gly02">
+        <div>
+            <h3>我是子级模板</h3>
+            <p>我是子组件中的数据：{{money}},{{height}}</p>
+            <p>我是父级组件中接受的数据：{{name}},{{age}},{{username.name}}</p>
+            <button @click="send">将子组件的数据发送给父级组件</button>
+        </div>
+    </template>
+    <script>
+        var vm = new Vue({
+            el: '#itany',
+            data: {
+
+            }, //存储数据
+            components: {
+                'my-hello': {
+                    template: '#gly01',
+                    data() {
+                        return {
+                            name: 'gly01',
+                            age: 25,
+                            user: {
+                                id: 23,
+                                name: 'gly001'
+                            },
+                            height: '166cm',
+                            money: '2e'
+                        }
+                    },
+                    methods: {
+                        getData(h, m) {
+                            this.height = h;
+                            this.money = m
+                        }
+                    },
+                    components: {
+                        'my-world': {
+                            template: '#gly02',
+                            data() {
+                                return {
+                                    height: '177cm',
+                                    money: '5亿'
+                                }
+                            },
+                            props: {
+                                'name': {
+                                    type: String,
+                                    required: true
+                                },
+                                'age': {
+                                    type: Number,
+                                    default: 16,
+                                    validator: function (value) {
+                                        return value >= 0
+                                    }
+                                },
+                                'username': {
+                                    type: Object,
+                                    default: function () {
+                                        return {
+                                            id: 16,
+                                            name: 'gly0000000'
+                                        }
+                                    }
+                                }
+                            },
+                            methods: {
+                                send() {
+                                    // console.log(this)
+                                    this.$emit('send-data', this.height, this.money)
+                                }
+                            },
+                        }
+                    }
+                }
+            },
+        });
+    </script>
+</body>
+
+</html>

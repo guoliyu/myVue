@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-test</title>
+    <link rel="stylesheet" href="./css/bootstrap.min.css">
+    <script src="./js/jquery.min.js"></script>
+    <script src="./js/bootstrap.min.js"></script>
+    <script src="./js/vue.js"></script>
+    <script>
+        window.onload = function () {
+            Vue.directive('drag', function (el) {
+                el.onmousedown = function (e) {
+                    var disX = e.clientX - el.offsetLeft,
+                        disY = e.clientY - el.offsetTop;
+                    console.log(disX + ' ' + disY)
+                    document.onmousemove = function (e) {
+                        var l = e.clientX - disX,
+                            t = e.clientY - disY;
+                        el.style.left = l + 'px';
+                        el.style.top = t + 'px'
+                    }
+                }
+            });
+            var vm = new Vue({
+                el: '#itany',
+                data: {
+                    msg: '下一步美满',
+                    msg2: '天亮就走散'
+                }, //存储数据
+                methods: {
+
+                } //存储方法
+            });
+        }
+    </script>
+</head>
+<style>
+    .l {
+        position: absolute;
+        text-align: center;
+        left: 0;
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        background: #ff4200;
+        color: #fff
+    }
+
+    .r {
+        position: absolute;
+        text-align: center;
+        right: 0;
+        width: 100px;
+        height: 100px;
+        line-height: 100px;
+        background: #4400ff;
+        color: #fff;
+    }
+</style>
+
+<body>
+    <div id="itany">
+        <p class="l" v-drag>{{msg}}</p>
+        <p class="r" v-drag>{{msg2}}</p>
+    </div>
+</body>
+
+</html>

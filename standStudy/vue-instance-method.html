@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-test</title>
+    <script src="./js/vue.js"></script>
+    <script>
+        window.onload = function () {
+            var vm = new Vue({
+                el: '#itany',
+                data: {
+                    user: {
+                        name: '哈哈哈',
+                        age: 23,
+                    }
+                }, //存储数据
+                methods: {
+                    doUpdate() {
+                        this.user.name = '果果姑狗狗';
+                        console.log('this.user.name :', this.user.name);
+                    },
+                    doAdd() {
+                        // this.$set(this.user, 'email', '451043144@qq.com')
+                        Vue.set(this.user, 'email', '451043144@qq.com')
+                    },
+                    doDelete() {
+                        Vue.delete(this.user, 'email')
+                    }
+                } //存储方法
+            });
+        }
+    </script>
+</head>
+
+<body>
+
+    <div id="itany">
+        <button @click="doUpdate">更新属性</button>
+        <button @click="doAdd">添加属性</button>
+        <button @click="doDelete">删除属性</button>
+        <!-- <button @click="doUpdate"></button> -->
+        <p>{{user.name}}</p>
+        <p>{{user.age}}</p>
+        <p>{{user.email}}</p>
+        <p>asdasdasd</p>
+    </div>
+
+</body>
+
+</html>

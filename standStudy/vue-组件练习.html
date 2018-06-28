@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>vue-test</title>
+    <script src="./js/vue.js"></script>
+
+</head>
+
+<body>
+
+    <div id="itany">
+        <button @click="flag='my-hello'">hello</button>
+        <button @click="flag='my-world'">world</button>
+        <my-hello></my-hello>
+        <div>
+            <component :is="flag"></component>
+        </div>
+    </div>
+    <template id="wbs">
+        <div>
+            <h3>{{name}}</h3>
+            <ul>
+                <li v-for="val in arr">
+                    {{val}}
+                </li>
+            </ul>
+        </div>
+    </template>
+
+    <script>
+        var vm = new Vue({
+            el: '#itany',
+            data: {
+                flag: 'my-hello'
+            }, //存储数据
+            methods: {
+
+            }, //存储方法
+            components: { //定义局部组件
+                'my-hello': {
+                    name: 'gly1992', //定义组件名称，默认标签名
+                    template: '#wbs',
+                    data: function () {
+                        return {
+                            name: '哈哈哈',
+                            arr: ['tom', 'jack', 'hello']
+                        }
+                    }
+                },
+                'my-world': {
+                    name: 'gly19203',
+                    template: '<h3> {{name}} </h3>',
+                    data() {
+                        return {
+                            name: '虢利于'
+                        }
+                    }
+                }
+            }
+        });
+    </script>
+</body>
+
+</html>
