@@ -101,4 +101,43 @@
     Vue.use(Login);
     4.App.vue使用组件
     <Login></Login>
-"# vue-test" 
+
+### 9 安装 Vuex
+
+    1.cnpm install vuex -S
+    2.创建store.js文件，在mian.js中导入配置store选项
+    3.编写store.js
+
+Vuex 的核心是 Store（仓库），相当于一个容器，一个 store 实例中包含一下属性的方法。
+
+    store       定义属性（状态，数据）
+    getter      用来获取属性
+    actions     定义方法（动作）
+    commit      提交变化，修改数据的唯一方法就是提交mutation
+    mutation    定义变化
+    注：不能直接修改数据，必须显式提交变化，目的是为了追踪到状态的变化
+
+    4.编写App.vue
+    在子组件中访问Store对象的两种方式：
+    方式一：通过this.$store访问
+    方式二：通过mapState,mapGetters,mapActions访问，vuex提供了两种方法
+        mapState        获取state
+        mapGetters      获取gettres
+        mapActions      获取actions
+
+### 9 管理 vuex
+
+    ├── index.html
+    ├── main.js
+    ├── api
+    │   └── ... # 抽取出API请求
+    ├── components
+    │   ├── App.vue
+    │   └── ...
+    └── store
+        ├── index.js          # 我们组装模块并导出 store 的地方
+        ├── actions.js        # 根级别的 action
+        ├── mutations.js      # 根级别的 mutation
+        └── modules
+            ├── cart.js       # 购物车模块
+            └── products.js   # 产品模块
